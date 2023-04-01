@@ -1,4 +1,4 @@
-package co.za.ordermanagement;
+package za.co.ordermanagement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
