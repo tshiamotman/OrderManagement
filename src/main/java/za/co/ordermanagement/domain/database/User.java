@@ -1,5 +1,8 @@
 package za.co.ordermanagement.domain.database;
 
+import net.minidev.json.annotate.JsonIgnore;
+import za.co.ordermanagement.domain.dto.Role;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,22 +10,22 @@ import javax.persistence.*;
 public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     @Column(name = "name")
-    private String name;
+    protected String name;
 
     @Column(name = "password")
-    private String password;
+    protected String password;
 
     @Column(name = "email_address")
-    private String emailAddress;
+    protected String emailAddress;
 
     @Column(name = "phone_number")
-    private String phoneNumber;
+    protected String phoneNumber;
 
     @Column(name = "role")
-    private String role;
+    protected Role role;
 
     public User() {
     }
@@ -43,6 +46,7 @@ public abstract class User {
         this.name = name;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -67,11 +71,11 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }

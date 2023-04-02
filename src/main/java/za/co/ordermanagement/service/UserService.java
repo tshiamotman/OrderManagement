@@ -25,7 +25,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         Optional<za.co.ordermanagement.domain.database.User> user = userRepository.findByName(name);
         List<GrantedAuthority> authorityList = new ArrayList<>();
-        authorityList.add(new SimpleGrantedAuthority(user.get().getRole()));
+        authorityList.add(new SimpleGrantedAuthority(user.get().getRole().name()));
 
         return new User(user.get().getName(), user.get().getPassword(), authorityList);
     }
@@ -44,7 +44,7 @@ public class UserService implements UserDetailsService {
 
         userRepository.save(user);
 
-        authorityList.add(new SimpleGrantedAuthority(user.getRole()));
+        authorityList.add(new SimpleGrantedAuthority(user.getRole().name()));
 
         return new User(user.getName(), user.getPassword(), authorityList);
     }
