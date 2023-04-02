@@ -11,11 +11,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import za.co.ordermanagement.domain.database.User;
 import za.co.ordermanagement.domain.dto.AuthenticationResponseDto;
 import za.co.ordermanagement.service.UserService;
 import za.co.ordermanagement.utils.JwToken;
 
+@RestController
+@RequestMapping("/auth")
 public class AuthenticationController {
     protected final Log logger = LogFactory.getLog(getClass());
 
