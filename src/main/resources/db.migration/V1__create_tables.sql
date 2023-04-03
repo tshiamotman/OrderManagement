@@ -39,6 +39,7 @@ CREATE TABLE "order_item" {
     menu_item_id BIGINT NOT NUll,
     quantity BIGINT NOT NULL,
     price INTEGAR NOT NULL,
+    instructions VARCHAR(255),
     CONSTRAINT pk_order_item PRIMARY KEY (id),
     CONSTRAINT order_fk FOREIGN KEY (order_id) REFERENCES order (id),
     CONSTRAINT menu_item_fk FOREIGN KEY (menu_item_id) REFERENCES menu_item (id),

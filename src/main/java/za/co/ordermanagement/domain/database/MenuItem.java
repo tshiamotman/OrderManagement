@@ -17,7 +17,7 @@ public class MenuItem {
     private User restaurant;
 
     @Column(name = "price")
-    private Integer price;
+    private Double price;
 
     @Column(name = "description")
     private String description;
@@ -49,11 +49,11 @@ public class MenuItem {
         this.restaurant = restaurant;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

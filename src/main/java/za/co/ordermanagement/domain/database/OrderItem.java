@@ -21,7 +21,10 @@ public class OrderItem {
     private Long quantity;
 
     @Column(name = "price")
-    private Integer price;
+    private Double price;
+
+    @Column(name = "instructions")
+    private String Instructions;
 
     public OrderItem() {
     }
@@ -58,11 +61,19 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getInstructions() {
+        return Instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        Instructions = instructions;
     }
 }
