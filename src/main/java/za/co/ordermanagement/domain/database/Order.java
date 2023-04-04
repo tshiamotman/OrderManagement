@@ -27,7 +27,10 @@ public class Order {
     private Date createdDate;
 
     @Column(name = "status")
-    private OrderStatus status;
+    private String status;
+
+    @Column(name = "price")
+    private Double price;
 
     public Order() {
     }
@@ -64,11 +67,19 @@ public class Order {
         this.createdDate = createdDate;
     }
 
-    public OrderStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(OrderStatus status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

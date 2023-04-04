@@ -4,5 +4,5 @@ import za.co.ordermanagement.domain.database.User;
 
 public class Restaurant extends User {
 
-    private final Role role = Role.RESTAURANT;
+    private final String role = Role.RESTAURANT.name();
 }

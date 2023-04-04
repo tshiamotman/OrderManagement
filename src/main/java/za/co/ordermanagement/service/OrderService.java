@@ -40,7 +40,7 @@ public class OrderService {
         order.setCreatedDate(new Date());
         order.setRestaurant(restaurant);
         order.setCustomer(customer);
-        order.setStatus(OrderStatus.PENDING);
+        order.setStatus(OrderStatus.PENDING.name());
 
         Order savedOrder = orderRepository.save(order);
 
@@ -68,8 +68,9 @@ public class OrderService {
             totalCost.updateAndGet(v -> v + price);
         });
         orderItemRepository.saveAll(orderItems);
+        savedOrder.setPrice(totalCost.get());
 
-        return new OrderResponse(savedOrder, orderItems, totalCost.get());
+        return new OrderResponse(orderRepository.save(savedOrder), orderItems);
     }
 
     public Order updateStatus(Long id, OrderStatus status) throws SQLException {
@@ -89,7 +90,7 @@ public class OrderService {
             throw new BadCredentialsException("Use correct restaurant credentials to update order.");
         }
 
-        order.setStatus(status);
+        order.setStatus(status.name());
 
         return orderRepository.save(order);
     }

@@ -11,12 +11,10 @@ public class OrderResponse {
 
     private List<OrderItem> orderItems;
 
-    private Double cost;
 
-    public OrderResponse(Order order, List<OrderItem> orderItems, Double cost) {
+    public OrderResponse(Order order, List<OrderItem> orderItems) {
         this.order = order;
         this.orderItems = orderItems;
-        this.cost = cost;
     }
 
     public Order getOrder() {
@@ -33,13 +31,5 @@ public class OrderResponse {
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
-    }
-
-    public Double getCost() {
-        return cost;
-    }
-
-    public void setCost(Double cost) {
-        this.cost = cost;
     }
 }

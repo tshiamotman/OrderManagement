@@ -25,7 +25,7 @@ public abstract class User {
     protected String phoneNumber;
 
     @Column(name = "role")
-    protected Role role;
+    protected String role;
 
     public User() {
     }
@@ -71,11 +71,11 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }
