@@ -28,11 +28,14 @@ public class OrderService {
 
     private final MenuService menuService;
 
-    public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, UserService userService, MenuService menuService) {
+    private final RedisStreamService redisStreamService;
+
+    public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, UserService userService, MenuService menuService, RedisStreamService redisStreamService) {
         this.orderRepository = orderRepository;
         this.orderItemRepository = orderItemRepository;
         this.userService = userService;
         this.menuService = menuService;
+        this.redisStreamService = redisStreamService;
     }
 
     public OrderResponse createOrder(Customer customer, Restaurant restaurant, List<OrderItemRequest> items) {
@@ -67,9 +70,10 @@ public class OrderService {
 
             totalCost.updateAndGet(v -> v + price);
         });
+
         orderItemRepository.saveAll(orderItems);
         savedOrder.setPrice(totalCost.get());
-
+        redisStreamService.addOrderToStream(savedOrder);
         return new OrderResponse(orderRepository.save(savedOrder), orderItems);
     }
 
@@ -86,12 +90,53 @@ public class OrderService {
 
         Order order = orderOptional.get();
 
-        if(!restaurant.getRole().equals(Role.RESTAURANT) || !restaurant.getId().equals(order.getRestaurant().getId())) {
+        if(!restaurant.getRole().equals(Role.RESTAURANT.name()) || !restaurant.getId().equals(order.getRestaurant().getId())) {
             throw new BadCredentialsException("Use correct restaurant credentials to update order.");
         }
 
         order.setStatus(status.name());
 
         return orderRepository.save(order);
+    }
+
+    public List<OrderResponse> getRestaurantPendingOrders() {
+        String restaurantName = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User restaurant = userService.getUser(restaurantName);
+
+        if(!restaurant.getRole().equals(Role.RESTAURANT.name())) {
+            throw new BadCredentialsException("Use restaurant credentials to get pending orders.");
+        }
+
+        List<StreamResults> streamResults = redisStreamService.getRestaurantPendingOrders(restaurantName);
+
+        List<OrderResponse> orders = new ArrayList<>();
+
+        for(StreamResults orderFromStream: streamResults) {
+            Optional<Order> orderOptional = orderRepository.findById(orderFromStream.getId());
+            orderOptional.ifPresent(order -> orders.add(new OrderResponse(
+                    order,
+                    orderItemRepository.findByOrderId(orderFromStream.getId())
+            )));
+        }
+        return orders;
+    }
+
+    public OrderResponse getOrderById(Long id) throws SQLException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User user = userService.getUser(username);
+
+        Optional<Order> orderOptional = orderRepository.findById(id);
+
+        if(orderOptional.isEmpty())
+            throw new SQLException(String.format("Order with ID: %d, does not exist.", id));
+
+        Order order = orderOptional.get();
+
+        if(!order.getRestaurant().getId().equals(user.getId()) || !order.getCustomer().getId().equals(user.getId()))
+            throw new BadCredentialsException("Credentials not authorized to get order details.");
+
+        return new OrderResponse(order, orderItemRepository.findByOrderId(id));
     }
 }

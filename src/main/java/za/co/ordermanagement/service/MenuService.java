@@ -47,7 +47,7 @@ public class MenuService {
     public List<MenuItem> getRestaurantMenuItems(String restaurantName) {
         User restaurant = userService.getUser(restaurantName);
 
-        if(!restaurant.getRole().equals(Role.RESTAURANT)) {
+        if(!restaurant.getRole().equals(Role.RESTAURANT.name())) {
             throw new BadCredentialsException("Provide existing restaurant name");
         }
 
@@ -59,7 +59,7 @@ public class MenuService {
 
         User restaurant = userService.getUser(user);
 
-        if(!restaurant.getRole().equals(Role.RESTAURANT)) {
+        if(!restaurant.getRole().equals(Role.RESTAURANT.name())) {
             throw new BadCredentialsException("Use restaurant credentials to add new menu item.");
         }
 

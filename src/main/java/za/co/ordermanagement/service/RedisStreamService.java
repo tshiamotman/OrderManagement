@@ -25,7 +25,7 @@ public class RedisStreamService {
     public RedisStreamService(ObjectMapper objectMapper, PropertyProvider propertyProvider) {
         this.objectMapper = objectMapper;
         this.propertyProvider = propertyProvider;
-        RedisClient redisClient = RedisClient.create(propertyProvider.getRedisUrl());
+        RedisClient redisClient = RedisClient.create(this.propertyProvider.getRedisUrl());
         StatefulRedisConnection<String, String> connection = redisClient.connect();
         this.syncCommands = connection.sync();
     }
