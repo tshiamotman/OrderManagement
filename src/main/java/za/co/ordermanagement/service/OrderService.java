@@ -3,6 +3,7 @@ package za.co.ordermanagement.service;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import za.co.ordermanagement.domain.database.MenuItem;
 import za.co.ordermanagement.domain.database.Order;
 import za.co.ordermanagement.domain.database.OrderItem;
@@ -10,6 +11,7 @@ import za.co.ordermanagement.domain.database.User;
 import za.co.ordermanagement.domain.dto.*;
 import za.co.ordermanagement.repository.OrderItemRepository;
 import za.co.ordermanagement.repository.OrderRepository;
+import za.co.ordermanagement.utils.PropertyProvider;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -30,12 +32,18 @@ public class OrderService {
 
     private final RedisStreamService redisStreamService;
 
-    public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, UserService userService, MenuService menuService, RedisStreamService redisStreamService) {
+    private final RestTemplate restTemplate;
+
+    private final PropertyProvider propertyProvider;
+
+    public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, UserService userService, MenuService menuService, RedisStreamService redisStreamService, RestTemplate restTemplate, PropertyProvider propertyProvider) {
         this.orderRepository = orderRepository;
         this.orderItemRepository = orderItemRepository;
         this.userService = userService;
         this.menuService = menuService;
         this.redisStreamService = redisStreamService;
+        this.restTemplate = restTemplate;
+        this.propertyProvider = propertyProvider;
     }
 
     public OrderResponse createOrder(Customer customer, Restaurant restaurant, List<OrderItemRequest> items) {
@@ -95,6 +103,8 @@ public class OrderService {
         }
 
         order.setStatus(status.name());
+
+        restTemplate.postForLocation(propertyProvider.getMessagingServiceUrl().concat("/updateOrder"), order);
 
         return orderRepository.save(order);
     }
