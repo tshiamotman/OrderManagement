@@ -14,7 +14,7 @@ public class WhatsappModel {
     private User restaurant;
 
     @Column(name = "phone_number_id")
-    private String name;
+    private String phoneNumberId;
 
     @Column(name = "token")
     private String token;
@@ -38,12 +38,12 @@ public class WhatsappModel {
         this.restaurant = restaurant;
     }
 
-    public String getName() {
+    public String getPhoneNumberId() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPhoneNumberId(String phoneNumberId) {
+        this.phoneNumberId = phoneNumberId; 
     }
 
     public String getToken() {
