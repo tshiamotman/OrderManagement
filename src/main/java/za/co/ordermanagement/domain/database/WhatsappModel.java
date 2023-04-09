@@ -39,7 +39,7 @@ public class WhatsappModel {
     }
 
     public String getPhoneNumberId() {
-        return name;
+        return phoneNumberId;
     }
 
     public void setPhoneNumberId(String phoneNumberId) {
