@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage());
                         }))
                 .and().authorizeHttpRequests()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/auth/*").permitAll()
                 .anyRequest().authenticated().and().exceptionHandling()
                 .authenticationEntryPoint((request, response, authException) -> {
                     Map<String, Object> responseMap = new HashMap<>();
