@@ -5,6 +5,6 @@ CREATE TABLE whatsapp
     phone_number_id          VARCHAR(255)                            NOT NULL,
     token   VARCHAR(255)                            NOT NULL,
     CONSTRAINT pk_whatsapp PRIMARY KEY (id),
-    CONSTRAINT unique_username UNIQUE (phone_number_id),
+    CONSTRAINT unique_phone_id UNIQUE (phone_number_id),
     CONSTRAINT restaurant_fk FOREIGN KEY (restaurant_id) REFERENCES "user" (id)
 );
