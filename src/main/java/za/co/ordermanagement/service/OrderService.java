@@ -1,5 +1,7 @@
 package za.co.ordermanagement.service;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -14,11 +16,9 @@ import za.co.ordermanagement.repository.OrderRepository;
 import za.co.ordermanagement.utils.PropertyProvider;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.*;
+
+import java.math.BigDecimal;
 
 @Service
 public class OrderService {
@@ -30,18 +30,18 @@ public class OrderService {
 
     private final MenuService menuService;
 
-    private final RedisStreamService redisStreamService;
+    private final RabbitMqService rabbitMqService;
 
     private final RestTemplate restTemplate;
 
     private final PropertyProvider propertyProvider;
 
-    public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, UserService userService, MenuService menuService, RedisStreamService redisStreamService, RestTemplate restTemplate, PropertyProvider propertyProvider) {
+    public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, UserService userService, MenuService menuService, RabbitMqService rabbitMqService, RestTemplate restTemplate, PropertyProvider propertyProvider) {
         this.orderRepository = orderRepository;
         this.orderItemRepository = orderItemRepository;
         this.userService = userService;
         this.menuService = menuService;
-        this.redisStreamService = redisStreamService;
+        this.rabbitMqService = rabbitMqService;
         this.restTemplate = restTemplate;
         this.propertyProvider = propertyProvider;
     }
@@ -56,7 +56,9 @@ public class OrderService {
         Order savedOrder = orderRepository.save(order);
 
         List<OrderItem> orderItems = new ArrayList<>();
-        AtomicReference<Double> totalCost = new AtomicReference<>(0.0);
+        var ref = new Object() {
+            BigDecimal totalCost = new BigDecimal("0.0");
+        };
         items.forEach(item -> {
             MenuItem menuItem;
             try {
@@ -70,18 +72,18 @@ public class OrderService {
             orderItem.setMenuItem(menuItem);
             orderItem.setQuantity(item.getQuantity());
 
-            double price = menuItem.getPrice() * item.getQuantity();
+            BigDecimal price = menuItem.getPrice().multiply(BigDecimal.valueOf(item.getQuantity()));
 
             orderItem.setPrice(price);
             orderItem.setInstructions(item.getInstructions());
             orderItems.add(orderItem);
 
-            totalCost.updateAndGet(v -> v + price);
+            ref.totalCost = ref.totalCost.add(price);
         });
 
         orderItemRepository.saveAll(orderItems);
-        savedOrder.setPrice(totalCost.get());
-        redisStreamService.addOrderToStream(savedOrder);
+        savedOrder.setPrice(ref.totalCost);
+        rabbitMqService.addOrderToQueue(savedOrder);
         return new OrderResponse(orderRepository.save(savedOrder), orderItems);
     }
 
@@ -104,7 +106,13 @@ public class OrderService {
 
         order.setStatus(status.name());
 
-        restTemplate.postForLocation(propertyProvider.getMessagingServiceUrl().concat("/updateOrder"), order);
+        HttpEntity<Order> request = new HttpEntity<>(order);
+
+        try {
+            restTemplate.exchange(propertyProvider.getMessagingServiceUrl().concat("/orderUpdate"), HttpMethod.POST, request, List.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         return orderRepository.save(order);
     }
@@ -118,7 +126,7 @@ public class OrderService {
             throw new BadCredentialsException("Use restaurant credentials to get pending orders.");
         }
 
-        List<StreamResults> streamResults = redisStreamService.getRestaurantPendingOrders(restaurantName);
+        List<StreamResults> streamResults = rabbitMqService.getRestaurantPendingOrders(restaurantName);
 
         List<OrderResponse> orders = new ArrayList<>();
 

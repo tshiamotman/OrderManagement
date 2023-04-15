@@ -2,6 +2,8 @@ package za.co.ordermanagement.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.math.BigDecimal;
+
 public class StreamResults {
     @JsonProperty("id")
     private Long id;
@@ -13,7 +15,7 @@ public class StreamResults {
     private Long customerId;
 
     @JsonProperty("price")
-    private Double price;
+    private BigDecimal price;
 
     public StreamResults() {
     }
@@ -42,11 +44,11 @@ public class StreamResults {
         this.customerId = customerId;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

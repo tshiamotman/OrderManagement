@@ -9,6 +9,7 @@ import za.co.ordermanagement.domain.dto.Role;
 import za.co.ordermanagement.repository.MenuItemRepository;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -116,5 +117,18 @@ public class MenuService {
 
         menuItemRepository.delete(dbMenuItem);
         return true;
+    }
+
+    public List<MenuItem> createMultipleMenuItems(List<MenuItem> items) {
+        List<MenuItem> menuItems = new ArrayList<>();
+
+        for(MenuItem item:items) {
+            try {
+                menuItems.add(createMenuItem(item));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return menuItems;
     }
 }

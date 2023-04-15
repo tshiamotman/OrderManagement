@@ -2,9 +2,10 @@ package za.co.ordermanagement.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class OrderRequest {
+public class OrderRequest implements Serializable {
 
     @JsonProperty("customer")
     private Customer customer;

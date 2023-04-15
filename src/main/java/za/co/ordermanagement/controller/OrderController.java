@@ -23,7 +23,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @RequestMapping( name = "/getPendingOrders",
+    @RequestMapping( path = "/getPendingOrders",
             method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getPendingOrders() {
         try {
@@ -38,7 +38,7 @@ public class OrderController {
         }
     }
 
-    @RequestMapping( name = "/createOrder",
+    @RequestMapping( path = "/createOrder",
             method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> createNewOrder(@RequestBody OrderRequest orderRequest) {
         try {
@@ -52,7 +52,7 @@ public class OrderController {
         }
     }
 
-    @RequestMapping( name = "/updateOrderStatus",
+    @RequestMapping( path = "/updateOrderStatus",
             method = RequestMethod.PUT, produces = "application/json")
     public ResponseEntity<?> updateOrderStatus(@RequestParam("id") Long id, @RequestParam("status") String status) {
         try {
@@ -64,8 +64,8 @@ public class OrderController {
         }
     }
 
-    @RequestMapping( name = "/getOrder/{id}",
-            method = RequestMethod.PUT, produces = "application/json")
+    @RequestMapping( path = "/getOrder/{id}",
+            method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getOrderById(@PathVariable("id") Long id) {
         try {
             return ResponseEntity.ok(orderService.getOrderById(id));

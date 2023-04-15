@@ -2,9 +2,10 @@ package za.co.ordermanagement.domain.dto;
 
 import za.co.ordermanagement.domain.database.User;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class AuthenticationResponseDto {
+public class AuthenticationResponseDto implements Serializable {
     private Boolean error;
 
     private String message;

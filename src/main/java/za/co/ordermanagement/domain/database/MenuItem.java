@@ -1,10 +1,13 @@
 package za.co.ordermanagement.domain.database;
 
 import javax.persistence.*;
+import java.io.Serializable;
+
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "menu_item")
-public class MenuItem {
+@Table(name = "menu_item", schema = "public")
+public class MenuItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,7 +20,7 @@ public class MenuItem {
     private User restaurant;
 
     @Column(name = "price")
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "description")
     private String description;
@@ -49,11 +52,11 @@ public class MenuItem {
         this.restaurant = restaurant;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

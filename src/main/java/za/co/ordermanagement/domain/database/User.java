@@ -4,10 +4,11 @@ import net.minidev.json.annotate.JsonIgnore;
 import za.co.ordermanagement.domain.dto.Role;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "user")
-public abstract class User {
+@Table(name = "user", schema = "public")
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;

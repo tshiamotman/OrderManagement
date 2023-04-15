@@ -3,7 +3,7 @@ package za.co.ordermanagement.domain.database;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "whatsapp")
+@Table(name = "whatsapp", schema = "public")
 public class WhatsappModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

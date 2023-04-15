@@ -8,6 +8,7 @@ import za.co.ordermanagement.domain.database.MenuItem;
 import za.co.ordermanagement.service.MenuService;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/restaurant")
@@ -19,7 +20,7 @@ public class RestaurantController {
         this.menuService = menuService;
     }
 
-    @RequestMapping( name = "/createMenuItem",
+    @RequestMapping( path = "/createMenuItem",
             method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> createNewMenuItem(@RequestBody MenuItem menuItem) {
         try {
@@ -31,7 +32,17 @@ public class RestaurantController {
         }
     }
 
-    @RequestMapping( name = "/updateMenuItem/{id}",
+    @RequestMapping( path = "/createMenuItems",
+            method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> createNewMenuItems(@RequestBody List<MenuItem> items) {
+        try {
+            return ResponseEntity.ok(menuService.createMultipleMenuItems(items));
+        } catch (Exception ex) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, ex.getMessage());
+        }
+    }
+
+    @RequestMapping( path = "/updateMenuItem/{id}",
             method = RequestMethod.PUT, produces = "application/json")
     public ResponseEntity<?> updateMenuItem(@PathVariable("id") Long id, @RequestBody MenuItem menuItem) {
         try {
@@ -43,7 +54,7 @@ public class RestaurantController {
         }
     }
 
-    @RequestMapping( name = "/deleteMenuItem/{id}",
+    @RequestMapping( path = "/deleteMenuItem/{id}",
             method = RequestMethod.DELETE, produces = "application/json")
     public ResponseEntity<?> deleteMenuItem(@PathVariable("id") Long id) {
         try {
@@ -55,7 +66,7 @@ public class RestaurantController {
         }
     }
 
-    @RequestMapping( name = "/getRestaurantMenu/{name}",
+    @RequestMapping( path = "/getRestaurantMenu/{name}",
             method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getRestaurantMenu(@PathVariable("name") String name) {
         try {
@@ -65,7 +76,7 @@ public class RestaurantController {
         }
     }
 
-    @RequestMapping( name = "/getMenuItemByName/{name}",
+    @RequestMapping( path = "/getMenuItemByName/{name}",
             method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getMenuItemByName(@PathVariable("name") String name) {
         try {
@@ -75,7 +86,7 @@ public class RestaurantController {
         }
     }
 
-    @RequestMapping( name = "/getMenuItemById/{id}",
+    @RequestMapping( path = "/getMenuItemById/{id}",
             method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getMenuItemById(@PathVariable("id") Long id) {
         try {

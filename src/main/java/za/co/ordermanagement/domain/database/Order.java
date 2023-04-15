@@ -4,11 +4,14 @@ import org.springframework.data.annotation.CreatedDate;
 import za.co.ordermanagement.domain.dto.OrderStatus;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
+import java.math.BigDecimal;
+
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "order", schema = "public")
+public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,7 +33,7 @@ public class Order {
     private String status;
 
     @Column(name = "price")
-    private Double price;
+    private BigDecimal price;
 
     public Order() {
     }
@@ -75,11 +78,11 @@ public class Order {
         this.status = status;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

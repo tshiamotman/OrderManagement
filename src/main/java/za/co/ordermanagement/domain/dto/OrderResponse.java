@@ -3,9 +3,10 @@ package za.co.ordermanagement.domain.dto;
 import za.co.ordermanagement.domain.database.Order;
 import za.co.ordermanagement.domain.database.OrderItem;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class OrderResponse {
+public class OrderResponse implements Serializable {
 
     private Order order;
 

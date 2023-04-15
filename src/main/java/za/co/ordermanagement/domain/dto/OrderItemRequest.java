@@ -1,6 +1,10 @@
 package za.co.ordermanagement.domain.dto;
 
-public class OrderItemRequest {
+import java.io.Serializable;
+
+import java.math.BigDecimal;
+
+public class OrderItemRequest implements Serializable {
 
     private String menuItem;
 

@@ -10,7 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import za.co.ordermanagement.service.UserService;
 
 @RestController
-@RequestMapping("/restaurant")
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
@@ -19,7 +19,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping( name = "/getRestaurantByPhoneId/{id}",
+    @RequestMapping( path = "/getRestaurantByPhoneId/{id}",
             method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getRestaurantByPhoneId(@PathVariable("id") String id) {
         try {
@@ -29,7 +29,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping( name = "/getCustomerByPhone/{id}",
+    @RequestMapping( path = "/getCustomerByPhoneNumber/{id}",
             method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getCustomerByPhoneId(@PathVariable("id") String id) {
         try {
@@ -39,7 +39,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping( name = "/ping",
+    @RequestMapping( path = "/ping",
             method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> ping() {
         return ResponseEntity.ok().build();
