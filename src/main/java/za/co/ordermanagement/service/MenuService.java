@@ -36,7 +36,7 @@ public class MenuService {
     }
 
     public MenuItem getMenuItemByName(String name) throws SQLException {
-        Optional<MenuItem> menuItemOptional = menuItemRepository.findByName(name);
+        Optional<MenuItem> menuItemOptional = menuItemRepository.findByNameIgnoreCase(name);
 
         if(menuItemOptional.isEmpty()) {
             throw new SQLException(String.format("Menu Item with name: %s, does not exist.", name));
