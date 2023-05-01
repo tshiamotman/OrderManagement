@@ -17,15 +17,15 @@ pipeline {
         stage('Dockerize') {
             steps {
                 // Build the Docker image
-                sh 'sudo docker build -t order-manager-service:latest .'
+                sh 'docker build -t order-manager-service:latest .'
             }
         }
 
         stage('Push to Registry') {
             steps {
                 // Push the Docker image to a Docker registry
-                sh "sudo docker tag order-manager-service gcr.io/zinc-reason-385105/order-manager-service"
-                sh 'sudo docker push gcr.io/zinc-reason-385105/order-manager-service:latest'
+                sh "docker tag order-manager-service gcr.io/zinc-reason-385105/order-manager-service"
+                sh 'docker push gcr.io/zinc-reason-385105/order-manager-service:latest'
             }
         }
 
