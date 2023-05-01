@@ -24,7 +24,7 @@ pipeline {
         stage('Push to Registry') {
             steps {
                 // Push the Docker image to a Docker registry
-                withCredentials([googleServiceAccountKey(credentialsId: 'b75110cca5016fc663fc38a6b9b7b217608db889', jsonKeyVariable: 'GCP_SA_KEY')]) {
+                withCredentials([googleServiceAccountKey(credentialsId: 'zinc-reason-385105', jsonKeyVariable: 'GCP_SA_KEY')]) {
                     sh "docker tag order-manager-service gcr.io/zinc-reason-385105/order-manager-service"
                     sh 'docker push gcr.io/zinc-reason-385105/order-manager-service:latest'
                 }
