@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "zinc-reason-385105",
+  "private_key_id": "b75110cca5016fc663fc38a6b9b7b217608db889",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDTNR+LV0S3tOye\nvmf04t1T6/36qJvBaQGAkc+5CMfygKXmLColf4gFlb39zLT+oRq75DCQEG0GjfIz\n03PNKQ3ZsmehbBOcMhjktLRy2c0x0DTNvra5xag+LHI88Bam2mqE0VhvX7jKaq4o\ndXApHxDb196t92sWjqhnsaByeppSykE/vXA3fDD3n5TlnScr8lIDrgCk1bwAj0nk\nLNViKTCrVAa+BC7SoqKZBWbDIao8Dbe6YUqWSAi6YjAblA/51TDAGVc3Hc5R2Txt\n0kAo3ppGN57vteDf+2vuq0MRKrieyfdwdsPTfkZ4u70C/8robvzUOV64tqlLDd2j\nfEi4Bp0bAgMBAAECggEAWDu4plr6Q66rLTQJNNYztTQBAd6/VuDZtk7z0u6WrTnO\nVKZ9ovWwqvigCu+iaz99biIJoZ2jFlplZP5AweQVO61auqZuWNHa8WyGd/aCUP2U\nmaFDL7+hpfuma8u3AtR7LGpSghCgn7tKb2+EQEGQpu77QXz7uUw2kT808q5CWzQN\n672exasI8bnRpq1FrJAfT9upjSVa55T7oeiJ98AmOucfmaUomITbAQywfSw+jf8v\na8qp4Vir7GGxhQx3/7sGc3Ya9D1QTZ1ZXdfjKqfhewiWCtsfaLU4MEeeI6zSV7CL\nE1iadV+TffaxeyTzbEFIKi4EJjvmYcimRjBw0UL+jQKBgQDzTLYklfWXuGXKKRJv\nL6o9cmOY3iG0XAR+TPJOCFjv2yzeXgGkkQiv4JIJMFUrT7eh+yZoIIYiuhszHxON\nq16Ad2Z2CL7fr37E51kl07xE0DR9Okk46l7JvOuUsAT/AZidqy1OCpt4bVg0wQeX\nG4CxkfUrY4dg5G1q+lsDHxq4fwKBgQDeO430g+act9y4HEueb+HrRFnhkleEOTIn\n+BQYVK8G1d9B/Oqm9wqtJlSBEG27ZQiggdbTCB+bDDncdp9+7Kmxf+mPwmA3qor8\nft03sA/JOXVZzpW3RbTJYJA4It/BfdxTMZTmpiKGQaNanEy76ZLpymWwyhjU15t8\nqZTaJTKtZQKBgCKacXlonqJyhn+nMckAhXzxzPqL9U06nST9eqTgiQ2sJYiG5ELs\nocip7vtBlYtwbhSqrL64iXtc7stpixVmHy20Ta1R9xvHUQdeRA6eO7OpzR1Wcd2X\nb93Pcc4W7s76AiPCmdH0rkIFgzsVjSfPsJEQykbeg/2i33EMpG8gOGOvAoGBANYg\n1g/zA8Kfmkm/4dDghvN04ZHquu7JWZ2PeHVVK2xPqRXhB4wnXx8lXqkZVlII8L4P\nPRoLqsBvkFTv65CVopBH6pk9Ng6NAex2pNqihyNhfMQyvKlhveeHZo7gc27xwdhb\nXti63Ws1VZvaHEm3rnocLc2hfTmgIc6Fa8qhqunNAoGBALjqYj95jsU3xroQTQAb\nXLrLX/AOPoCPB9IIdyKnHI+pkMJsQPpnd28zClq3Fz3dyWjXB8z4qVdG/lGBYx/5\nzYxpoEice5osTebGKcHGWurBP8wqX4Cl1JM19RI793vg8kjLX+0QSvIV4keSXbWv\nrnP4bAEx8ecvWf1h93P+wFIy\n-----END PRIVATE KEY-----\n",
+  "client_email": "jenkins@zinc-reason-385105.iam.gserviceaccount.com",
+  "client_id": "110422799717460225439",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jenkins%40zinc-reason-385105.iam.gserviceaccount.com"
+}

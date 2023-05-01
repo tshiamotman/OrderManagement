@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "zinc-reason-385105",
+  "private_key_id": "b34667611b3ebabc872218458c63c54e5c40f90f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQD31qfGTZ8BuQXc\njKjtPVtkrwMOzLnB9us4HRyYLvZMjQvH5s8115rIJrwBrZbCRPg2GQhLk8P3EJJ+\nef3WmYzsq88l8d57gFAjKWzp7TO1/ylXcUqrpWNrYfe9Xk2+hK8wsZZTfqg8qA5W\n6NZfXW29ZMOML4eQ/aqDd825SXSPC+ibPNEie0rd24SJSM2Wn5PiDdid2FnreNqg\nZXVAFmR2ZnbvcAK53820w7PHP273CXHU2FxxKoLWBlc0Z3kbwqUBYWvf+C/cmXFr\nJzMvYzD39MK0azD9Kbju3rxyqMFc9aaGSJkoIKF5v6leWWxLiF1zt+yZPaHvhnxb\nxH0D40BXAgMBAAECggEAMrD0cvJ4ZdVOthwNBy0oDtFfCj1kdyBGXx1RNm1Qkjq9\nIJ98XVJihbKqfJthPQ33SLVZBYBNMjDxDa5s9WJFuTiw711nuJH3kiGMddI+4+gz\nL//rmm0DBzkr/08VDrU70fVYvm4nAfULrcoE4s+MvRKpjnhAPa8sm6Q67z1vejw5\nxBksQvlHuWblnMWNwZYA1QkDhQcad9rn9dhYSwoIpnkBZqE+Hc8Hmo0O/7MJPqUJ\n6Vi+a+ITU5xtyhJbzhNV7aogL8uqb9yHbYwCS31Eb9QwggbRPd0nZCqiEVqniXaz\nuPDVLv6xEPhAhvouQ0tLAJXpwaL/aXP8Ca32WbxOHQKBgQD/bE8dsJ6ObxX577Qk\n5pYGagNSda7HCiGYKZV/u3xp8ScW2iSZWfNvcdbLGk+/lgZkPjFjC0eDvW0jCbSQ\n76TVx39ptKuDCftPPOfZz2jroR0nZRNL3s/tKoflONS4dcdhyUDN8Jc+zUez/xcG\nMgxPwUfxOKSF1nMDrkD983OjIwKBgQD4ZfX0OPzHYchbrDoOo9aXS0wbEsBJRH2o\n6S9QI/f04HxPY45CewLZKly6I19LlBzpKT766fMrJGfdpw2WPi428pubNoW+xj4p\nBCz18N0oQrXfgUdQEHMJ6lzttF3i/bsh3NPiBfhTLp2mCMxoCdoMa3YJ/vbEBzY4\ncqdGp3+rPQKBgDFUSJ9SSfz2JUdk7OSnh9frR4L4aW3VXhGWDmJh4jBPu53lOWZI\nggRG9xW4mihFICzh+gXH2uLthZNbv3yyW6JR6iCPHQSsu9VczOY68Wd4cTn3gleH\ny55hNWempyaM0JnpFVPwoDUnzi5MGLVAmzIYAP3sU5HpjcLrN3AUQYQDAoGAZ/Yc\nk4OKYFRPi/awMdJmjNnJ14bojYGp6hj2YV88dvPBc2SidLaRQZzWRF1rk/FAjGFj\n55Yk3QiWpBE3wYrywrKVZ8fRAEBuYbJKswCFP0V0Yz/zPdI0o5DAJgiYRtmVCZ4n\n2/BNt1rKRmRmUKDW7t3HAHYCh5bRHZz2375Y060CgYEAmJWHSFJ0gFfTezlXF32M\ntOokSV6j4lV0KMZx8TA6LbEqAOKyhwP0DeCxaYa0ioUqyGxS09OC/XqfgJupmOUx\nqteIAE0i7KxXTuMknj1McHhfVHVjO7Jjwd8jkt308bnlkcm7SneOeKA49j6U06AM\nQZie/xBAdPewNus0RCLh6wk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "order-manager@zinc-reason-385105.iam.gserviceaccount.com",
+  "client_id": "106700071204473003585",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/order-manager%40zinc-reason-385105.iam.gserviceaccount.com"
+}
