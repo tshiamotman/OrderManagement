@@ -5,7 +5,9 @@ pipeline {
         stage('Build') {
             steps {
                 // Checkout the source code from Git
-                git branch: 'main', url: 'git@github.com:tshiamotman/OrderManagement.git'
+                git branch: 'main', 
+                credentialsId: '94d268ca-6756-4d96-ac76-58a38f70923f',
+                url: 'https://github.com/tshiamotman/OrderManagement.git'
         
                 // Build the Spring Boot application
                 sh './mvnw clean package -DskipTests'
@@ -22,10 +24,9 @@ pipeline {
         stage('Push to Registry') {
             steps {
                 // Push the Docker image to a Docker registry
-                withCredentials([usernamePassword(credentialsId: 'docker-registry', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    sh "docker login -u $DOCKER_USER -p $DOCKER_PASS"
+                    sh "docker tag order-manager-service gcr.io/zinc-reason-385105/order-manager-service"
                 }
-                sh 'docker push myapp:latest'
+                sh 'docker push gcr.io/zinc-reason-385105/order-manager-service:latest'
             }
         }
 
