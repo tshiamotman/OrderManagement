@@ -6,7 +6,7 @@ pipeline {
             steps {
                 // Checkout the source code from Git
                 git branch: 'main', 
-                credentialsId: '2543fbfb-980b-482d-81f8-663247f508d8',
+                credentialsId: 'c5bffbae-df84-4461-bc34-2636389bdcd4',
                 url: 'https://github.com/tshiamotman/OrderManagement.git'
         
                 // Build the Spring Boot application
