@@ -27,7 +27,7 @@ pipeline {
         stage('Push to Registry') {
             steps {
                 // Push the Docker image to a Docker registry
-                sh 'gcloud auth activate-service-account --key-file=$GCLOUD_CREDS'
+                sh 'gcloud auth activate-service-account order-manager@zinc-reason-385105.iam.gserviceaccount.com --key-file=$GCLOUD_CREDS'
                 sh "docker tag order-manager-service gcr.io/zinc-reason-385105/order-manager-service"
                 sh 'docker push gcr.io/zinc-reason-385105/order-manager-service:latest'
             
@@ -37,7 +37,7 @@ pipeline {
         stage('Deploy to GKE') {
             steps {
                 // Deploy the application to GKE
-                sh 'gcloud auth activate-service-account --key-file=$GCLOUD_CREDS'
+                sh 'gcloud auth activate-service-account order-manager@zinc-reason-385105.iam.gserviceaccount.com --key-file=$GCLOUD_CREDS'
                 sh 'gcloud container clusters get-credentials order-manager-prod --zone us-central1-a --project order-manager'
                 sh 'kubectl apply -f order-manager-service.yaml'
             
