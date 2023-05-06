@@ -27,7 +27,7 @@ pipeline {
         stage('Push to Registry') {
             steps {
                 // Push the Docker image to a Docker registry
-                sh '''gcloud auth activate-service-account order-manager@zinc-reason-385105.iam.gserviceaccount.com --key-file=$GCLOUD_CREDS'
+                sh '''gcloud auth activate-service-account order-manager@zinc-reason-385105.iam.gserviceaccount.com --key-file=$GCLOUD_CREDS
                 cat $GCLOUD_CREDS | docker login -u _json_key_base64 --password-stdin \
 https://us.gcr.io
                 docker tag order-manager-service gcr.io/zinc-reason-385105/order-manager-service
