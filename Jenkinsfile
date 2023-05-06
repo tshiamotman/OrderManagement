@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+    environment {
+        CLOUDSDK_CORE_PROUCT="zinc-reason-385105"
+        GCLOUD_CREDS=credentials("zinc-reason-385105")
+    }
     stages {
         stage('Build') {
             steps {
@@ -24,19 +27,20 @@ pipeline {
         stage('Push to Registry') {
             steps {
                 // Push the Docker image to a Docker registry
-                sh 'gcloud auth activate-service-account --key-file zinc-reason-385105-b34667611b3e.json'
+                sh 'gcloud auth activate-service-account --key-file=$GCLOUD_CREDS'
                 sh "docker tag order-manager-service gcr.io/zinc-reason-385105/order-manager-service"
                 sh 'docker push gcr.io/zinc-reason-385105/order-manager-service:latest'
+            
             }
         }
 
         stage('Deploy to GKE') {
             steps {
                 // Deploy the application to GKE
-                sh 'gcloud auth activate-service-account --key-file zinc-reason-385105-b34667611b3e.json'
+                sh 'gcloud auth activate-service-account --key-file=$GCLOUD_CREDS'
                 sh 'gcloud container clusters get-credentials order-manager-prod --zone us-central1-a --project order-manager'
                 sh 'kubectl apply -f order-manager-service.yaml'
-                
+            
             }
         }
     }
