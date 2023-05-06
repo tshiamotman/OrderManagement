@@ -44,7 +44,7 @@ docker push gcr.io/zinc-reason-385105/order-manager-service:latest'''
 cat $GCLOUD_CREDS | docker login -u _json_key --password-stdin \
 https://us.gcr.io
 gcloud auth configure-docker
-gcloud container clusters get-credentials order-manager-prod --zone=us-central1-a --project=order-manager
+//gcloud container clusters get-credentials order-manager-prod --zone=us-central1-a --project=order-manager
 kubectl apply -f order-manager-service.yaml'''
             
             }
