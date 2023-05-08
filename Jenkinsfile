@@ -22,11 +22,7 @@ pipeline {
                 docker {
                     image 'docker:20-dind'
                     args '-u root'
-                    volumes {
-                        hostPath('/var/run/docker.sock') {
-                            mountPath('/var/run/docker.sock')
-                        }
-                    }
+                    host '/var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             steps {
