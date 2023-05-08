@@ -18,6 +18,12 @@ pipeline {
         }
 
         stage('Dockerize') {
+            agent {
+                docker {
+                    image 'docker:20-dind'
+                    args '-u root'
+                }
+            }
             steps {
                 // Build the Docker image
                 sh 'docker build -t order-manager-service:latest .'
@@ -41,9 +47,7 @@ docker push gcr.io/zinc-reason-385105/order-manager-service:latest'''
             steps {
                 // Deploy the application to GKE
                 sh '''gcloud auth activate-service-account order-manager@zinc-reason-385105.iam.gserviceaccount.com --key-file=$GCLOUD_CREDS
-cat $GCLOUD_CREDS | docker login -u _json_key --password-stdin \
-https://us.gcr.io
-gcloud auth configure-docker
+gcloud container clusters get-credentials order-manager-prod --region us-central1 --project zinc-reason-385105
 kubectl apply -f order-manager-service.yaml'''
             
             }
