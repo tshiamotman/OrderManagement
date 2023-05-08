@@ -21,11 +21,7 @@ pipeline {
             agent {
                 docker {
                     image 'docker:20-dind'
-                    args '-u root'
-                    volumes { 
-                        hostPath('/var/run/docker.sock') 
-                        mount('/var/run/docker.sock')
-                    }
+                    args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             steps {
