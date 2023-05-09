@@ -18,12 +18,7 @@ pipeline {
         }
 
         stage('Dockerize') {
-            agent {
-                docker {
-                    image 'docker:20-dind'
-                    args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
-                }
-            }
+            agent('sideCar')
             steps {
                 // Build the Docker image
                 sh 'docker build -t order-manager-service:latest .'
@@ -38,8 +33,7 @@ cat $GCLOUD_CREDS | docker login -u _json_key --password-stdin \
 https://us.gcr.io
 gcloud auth configure-docker
 docker tag order-manager-service gcr.io/zinc-reason-385105/order-manager-service
-docker push gcr.io/zinc-reason-385105/order-manager-service:latest'''
-            
+docker push gcr.io/zinc-reason-385105/order-manager-service:latest'''  
             }
         }
 
