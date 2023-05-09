@@ -18,7 +18,7 @@ pipeline {
         }
 
         stage('Dockerize') {
-            agent('sideCar')
+            agent cloud 'sideCar'
             steps {
                 // Build the Docker image
                 sh 'docker build -t order-manager-service:latest .'
