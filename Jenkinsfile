@@ -19,9 +19,7 @@ pipeline {
 
         stage('Dockerize') {
             agent {
-                label {
-                    'sideCar'
-                }
+                label 'sideCar'
             }
             steps {
                 // Build the Docker image
