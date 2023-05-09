@@ -19,7 +19,9 @@ pipeline {
 
         stage('Dockerize') {
             agent {
-                label 'sideCar'
+                kubernetes {
+                    label 'sideCar'
+                }
             }
             steps {
                 // Build the Docker image
