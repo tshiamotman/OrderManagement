@@ -19,8 +19,8 @@ pipeline {
 
         stage('Dockerize') {
             agent {
-                cloud {
-                    label 'sideCar'
+                label {
+                    'sideCar'
                 }
             }
             steps {
