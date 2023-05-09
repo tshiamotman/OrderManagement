@@ -21,6 +21,34 @@ pipeline {
             agent {
                 kubernetes {
                     label 'sideCar'
+                    yaml '''
+                        apiVersion: v1
+                        kind: Pod
+                        metadata:
+                        name: jenkins-sidecar
+                        spec:
+                        containers:
+                        - name: jenkins
+                            image: jenkins/jenkins:lts
+                            ports:
+                            - containerPort: 8080
+                            name: http
+                            protocol: TCP
+                            - containerPort: 50000
+                            name: agent
+                            protocol: TCP
+                        - name: docker
+                            image: docker:stable-dind
+                            securityContext:
+                            privileged: true
+                            volumeMounts:
+                            - name: dockersock
+                            mountPath: /var/run/docker.sock
+                        volumes:
+                        - name: dockersock
+                            hostPath:
+                            path: /var/run/docker.sock
+            '''
                 }
             }
             steps {
