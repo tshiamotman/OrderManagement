@@ -14,14 +14,14 @@ spec:
     spec:
       containers:
       - name: order-manager-service
-        image: order-manager-service:latest
+        image: gcr.io/zinc-reason-385105/order-manager-service:latest
         env:
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://postgres-rabbitmq:5432/order-manager
+          value: jdbc:postgresql://postgres-service:5432/order-manager
         - name: SPRING_RABBITMQ_HOST
-          value: rabbitmq
+          value: rabbitmq-service
         - name: SPRING_REDIS_HOST
-          value: redis
+          value: redis-service
         ports:
         - containerPort: 8080
 ---
