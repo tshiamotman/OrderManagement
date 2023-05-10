@@ -17,9 +17,9 @@ spec:
         image: gcr.io/zinc-reason-385105/order-manager-service:latest
         env:
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://postgres-service:5432/order-manager
+          value: jdbc:postgresql://postgresql:5432/order-manager
         - name: SPRING_RABBITMQ_HOST
-          value: rabbitmq-service
+          value: rabbitmq
         - name: SPRING_REDIS_HOST
           value: redis-service
         ports:
