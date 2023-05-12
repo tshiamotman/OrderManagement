@@ -30,9 +30,11 @@ kind: Service
 metadata:
   name: order-manager-service
 spec:
+  type: LoadBalancer
   selector:
     app: order-manager-service
   ports:
   - name: http
     port: 80
+    protocol: TCP
     targetPort: 8080
