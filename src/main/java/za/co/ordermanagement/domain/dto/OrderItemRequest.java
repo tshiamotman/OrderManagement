@@ -10,12 +10,12 @@ public class OrderItemRequest implements Serializable {
 
     private Long quantity;
 
-    private String Instructions;
+    private String instructions;
 
     public OrderItemRequest(String menuItem, Long quantity, String instructions) {
         this.menuItem = menuItem;
         this.quantity = quantity;
-        Instructions = instructions;
+        this.instructions = instructions;
     }
 
     public OrderItemRequest() {
@@ -38,10 +38,10 @@ public class OrderItemRequest implements Serializable {
     }
 
     public String getInstructions() {
-        return Instructions;
+        return this.instructions;
     }
 
     public void setInstructions(String instructions) {
-        Instructions = instructions;
+        this.instructions = instructions;
     }
 }
